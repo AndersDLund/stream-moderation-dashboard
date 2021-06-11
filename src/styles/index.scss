@@ -1,3 +1,5 @@
+@import './variables';
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -14,4 +16,9 @@ body {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.container {
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
 }
