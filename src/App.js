@@ -11,7 +11,7 @@ const App = () => {
   return (
     <main>
       <header>
-        <h1>Application: Moderation Bois!</h1>
+        <h1>Application: Moderation Bois</h1>
       </header>
       {/* Need to make components for all the sections here -- these are just placeholder for layout now */}
       <ChannelList />
