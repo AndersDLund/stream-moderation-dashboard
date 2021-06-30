@@ -6,16 +6,13 @@ main {
     height: 100vh;
     padding: 1rem;
 
-    >header {
+    >h1 {
         align-items: center;
         display: flex;
-        font-size: 2rem;
+        font-size: 3rem;
         grid-column: 2 / 11;
         grid-row: 2 / 3;
-
-        >h1 {
-            margin: 0;
-        }
+        margin: 0;
     }
 
     // *these are just placeholders until the rest of the components are implemented - should change selectors when they are all ready*

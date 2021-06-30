@@ -9,7 +9,7 @@ const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiUnlhbiJ9
 chatClient.connectUser({ id: userId }, userToken);
 const filter = { members: { $in: ['Ryan'] }, };
 const sort = { last_message_at: -1 };
-
+let filterValue = '';
 // const renderChannels = async () => {
 //     console.log(channels)
 //     return channels.map(channel => <li>{channel.id}</li>
@@ -18,7 +18,7 @@ const sort = { last_message_at: -1 };
 export const ChannelList = (props) => {
     // use effect variables
     const [channels, setChannels] = useState([])
-    
+    const [cid, setCID] = useState('')
     // other variables
 
     // functions
@@ -28,21 +28,30 @@ export const ChannelList = (props) => {
         });
     }, [])
 
-    // updateInputValue(newInputValue) = async () => {
-    //     console.log(newInputValue)
-    // };
+    // changeFilter(() => {
+    //     filter = ''
+    //     chatClient.queryChannels(filter, sort, {}).then((res) => {
+    //         setChannels(res)
+    //     });
+    // }, [])
 
-    useEffect(() => {
-        chatClient.queryChannels(filter, sort, {}).then((res) => {
-            setChannels(res)
-        });
-    }, [input])
+    //  updateChannelList(() => {
+    //     const newFilter = { members: { $in: [filterValue] }, };
+    //     // console.log(newFilter)
+    //     chatClient.queryChannels(filter, sort, {}).then((res) => {
+    //         setChannels(res)
+    //     }, [])
+    // },
+
+    //  updateInputValue(x) {
+    //     console.log(x);
+    //    filterValue = x;
+    //    };
 
     return (
         <section className="container">
-        <input>
-        </input>
-        <input onChange={e => this.updateInputValue(e.target.value)}></input>
+            <button onClick={e => updateChannelList()}></button>
+        <input onChange={e => updateInputValue(e.target.value)}></input>
         <ul>
         {channels.map(channel => <li>{channel.id}</li>)}
         </ul>
