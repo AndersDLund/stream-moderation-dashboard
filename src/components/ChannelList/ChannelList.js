@@ -18,7 +18,7 @@ let filterValue = '';
 export const ChannelList = (props) => {
     // use effect variables
     const [channels, setChannels] = useState([])
-    const [cid, setCID] = useState('')
+    const [channelID, setChannelID] = useState('')
     // other variables
 
     // functions
@@ -28,31 +28,24 @@ export const ChannelList = (props) => {
         });
     }, [])
 
-    // changeFilter(() => {
-    //     filter = ''
-    //     chatClient.queryChannels(filter, sort, {}).then((res) => {
-    //         setChannels(res)
-    //     });
-    // }, [])
+     const updateChannelList=() => {
+        const filter = { id: channelID };
+        // console.log(newFilter)
+        chatClient.queryChannels(filter, sort, {}).then((res) => {
+            setChannels(res)
+        }, [])
+    }
 
-    //  updateChannelList(() => {
-    //     const newFilter = { members: { $in: [filterValue] }, };
-    //     // console.log(newFilter)
-    //     chatClient.queryChannels(filter, sort, {}).then((res) => {
-    //         setChannels(res)
-    //     }, [])
-    // },
-
-    //  updateInputValue(x) {
-    //     console.log(x);
-    //    filterValue = x;
-    //    };
+     const updateInputValue=(cidInput) => {
+        setChannelID(cidInput);
+       };
 
     return (
         <section className="container">
-            <button onClick={e => updateChannelList()}></button>
         <input onChange={e => updateInputValue(e.target.value)}></input>
+        <button onClick={e => updateChannelList()}>Search</button>
         <ul>
+        
         {channels.map(channel => <li>{channel.id}</li>)}
         </ul>
         {/* {props.items.map((item, index) => (
