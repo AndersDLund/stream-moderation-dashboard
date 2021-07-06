@@ -18,6 +18,11 @@ body {
   -moz-box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   border-radius: $border-radius;
   box-shadow: $box-shadow;
