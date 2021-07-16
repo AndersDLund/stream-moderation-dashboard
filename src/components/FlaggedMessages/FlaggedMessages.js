@@ -39,7 +39,7 @@ export const FlaggedMessages = (props) => {
         <section className="container flagged-messages-container">
             <ul>
                 {
-                    flagged.map((item, i) => <li key={i} >
+                    flagged && flagged.map((item, i) => <li key={i} >
                         <div className="message-select" onClick={() => selectMessage(item)} className={item.selected ? 'selected message-select' : 'message-select'}></div>
                         <div onClick={() => setActiveMessage(item)} className={item.active ? 'active message-container' : 'message-container'}>
                             <div className="message-details-container">
