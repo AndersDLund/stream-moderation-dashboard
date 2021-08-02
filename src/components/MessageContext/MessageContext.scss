@@ -1,0 +1,55 @@
+@import '../../styles/variables';
+
+.message-context-container {
+    overflow: auto;
+    padding: 1rem;
+
+    >header {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        >div {
+            border-radius: $border-radius;
+            padding: .5rem;
+            width: 50%;
+
+            >p {
+                text-align: center;
+            }
+
+            &.active {
+                background-color: lightblue;
+
+                >p {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    >.content-area {
+        margin-top: 1rem;
+
+        >ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            >li {
+                align-self: flex-end;
+                margin-top: 1rem;
+
+                &.sender {
+                    align-self: flex-start;
+                }
+
+                &.flagged {
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
