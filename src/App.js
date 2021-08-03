@@ -54,7 +54,7 @@ const App = () => {
     <main>
       {/* <h1>Application: Moderation Bois!</h1> */}
       {/* Need to make components for all the sections here -- these are just placeholder for layout now */}
-      <ChannelList />
+      <ChannelList channels={channels} setChannels={setChannels} setFlagged={setFlagged} />
       <FlaggedMessages flagged={flagged} setFlagged={setFlagged} />
       <MessageContext activeMessage={activeMessage} />
       <section className="container"></section>
