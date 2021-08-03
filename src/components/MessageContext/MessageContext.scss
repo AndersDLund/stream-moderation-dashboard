@@ -6,11 +6,12 @@
 
     >header {
         align-items: center;
+        border-bottom: 1px solid black;
         display: flex;
         justify-content: space-between;
 
         >div {
-            border-radius: $border-radius;
+            cursor: pointer;
             padding: .5rem;
             width: 50%;
 
@@ -20,6 +21,14 @@
 
             &.active {
                 background-color: lightblue;
+
+                &.details-tab {
+                    border-top-left-radius: $border-radius;
+                }
+
+                &.sentiment-tab {
+                    border-top-right-radius: $border-radius;
+                }
 
                 >p {
                     color: white;
@@ -46,8 +55,49 @@
                     align-self: flex-start;
                 }
 
-                &.flagged {
-                    background-color: red;
+                >.message {
+                    border-radius: $border-radius;
+                    border-bottom-left-radius: 0;
+                    box-shadow: $box-shadow;
+                    padding: .5rem 1rem;
+
+                    &.flagged {
+                        background-color: lightblue;
+                    }
+                }
+            }
+
+            &.pill-container {
+                flex-direction: row;
+                justify-content: space-around;
+
+                >li {
+                    border-radius: $border-radius;
+                    box-shadow: $box-shadow;
+                    height: 6rem;
+                    width: 8%;
+
+                    &.show {
+                        &.very-negative {
+                            background-color: darkred;
+                        }
+
+                        &.negative {
+                            background-color: red;
+                        }
+
+                        &.neutral {
+                            background-color: grey;
+                        }
+
+                        &.positive {
+                            background-color: green;
+                        }
+
+                        &.very-positive {
+                            background-color: darkgreen;
+                        }
+                    }
                 }
             }
         }

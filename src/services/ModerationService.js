@@ -8,5 +8,10 @@ export const ModerationService = {
     getFlaggedMessages: (filter, options) => {
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/flagged`;
         return axios.post(url, { filter, options });
+    },
+    getMessageSentiment: (text) => {
+        console.log(text, 'TEXT');
+        const url = `${process.env.REACT_APP_BASE_URL}/moderation/sentiment`;
+        return axios.post(url, { text });
     }
 }

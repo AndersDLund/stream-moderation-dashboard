@@ -52,15 +52,15 @@ const App = () => {
 
   return (
     <main>
-      <h1>Application: Moderation Bois!</h1>
+      {/* <h1>Application: Moderation Bois!</h1> */}
       {/* Need to make components for all the sections here -- these are just placeholder for layout now */}
       <ChannelList />
       <FlaggedMessages flagged={flagged} setFlagged={setFlagged} />
       <MessageContext activeMessage={activeMessage} />
       <section className="container"></section>
-      <section className="logo-container">
+      {/* <section className="logo-container">
         <StreamLogo className="stream-logo" />
-      </section>
+      </section> */}
     </main>
   )
 }

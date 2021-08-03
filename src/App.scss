@@ -6,48 +6,48 @@ main {
     height: 100vh;
     padding: 1rem;
 
-    >h1 {
-        align-items: center;
-        display: flex;
-        font-size: 3rem;
-        grid-column: 2 / 11;
-        grid-row: 2 / 3;
-        margin: 0;
-    }
+    // >h1 {
+    //     align-items: center;
+    //     display: flex;
+    //     font-size: 3rem;
+    //     grid-column: 2 / 11;
+    //     grid-row: 2 / 3;
+    //     margin: 0;
+    // }
 
     // *these are just placeholders until the rest of the components are implemented - should change selectors when they are all ready*
 
+    :nth-child(1) {
+        grid-column: 1 / 4;
+        grid-row: 1 / 11;
+    }
+
     :nth-child(2) {
-        grid-column: 2 / 4;
-        grid-row: 3 / 10;
+        grid-column: 4 / 13;
+        grid-row: 1 / 6;
     }
 
     :nth-child(3) {
         grid-column: 4 / 10;
-        grid-row: 3 / 9;
+        grid-row: 6 / 11;
     }
 
     :nth-child(4) {
-        grid-column: 10 / 12;
-        grid-row: 4 / 9;
-    }
-
-    :nth-child(5) {
-        grid-column: 10 / 12;
-        grid-row: 3;
+        grid-column: 10 / 13;
+        grid-row: 6 / 11;
     }
 
     // *************** END PLACEHOLDER *******************
 
-    >.logo-container {
-        display: flex;
-        grid-column: 10 / 12;
-        grid-row: 9 / 10;
-        justify-content: center;
+    // >.logo-container {
+    //     display: flex;
+    //     grid-column: 10 / 12;
+    //     grid-row: 9 / 10;
+    //     justify-content: center;
 
-        >.stream-logo {
-            height: auto;
-            width: 85%;
-        }
-    }
+    //     >.stream-logo {
+    //         height: auto;
+    //         width: 85%;
+    //     }
+    // }
 }
