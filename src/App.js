@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 // styles
 import './App.scss';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // components
 import { FlaggedMessages } from './components/FlaggedMessages/FlaggedMessages';
 import { ChannelList } from './components/ChannelList/ChannelList';
 import { MessageContext } from './components/MessageContext/MessageContext';
-
-// assets
-import { ReactComponent as StreamLogo } from './assets/stream_logo.svg';
+import { MessageActions } from './components/MessageActions/MessageActions';
 
 // services
 import { ConnectionService } from './services/ConnectionService';
@@ -22,6 +22,7 @@ const App = () => {
   const [flagged, setFlagged] = useState([]);
   const [activeMessage, setActiveMessage] = useState(null);
   const [selectedMessages, setSelectedMessages] = useState([])
+  const [selectedUsers, setSelectedUsers] = useState([]);
 
   useEffect(async () => {
     try {
@@ -34,9 +35,11 @@ const App = () => {
   useEffect((data) => {
     if (flagged.length > 0) {
       const active = flagged.filter(message => message.active)[0];
-      const selected = flagged.filter(message => message.selected);
+      const messages = flagged.filter(message => message.selected);
+      const users = messages.map(message => message.user.id);
+      setSelectedUsers([... new Set(users)]);
       setActiveMessage(active);
-      setSelectedMessages(selected);
+      setSelectedMessages(messages);
     }
   }, [flagged])
 
@@ -52,15 +55,10 @@ const App = () => {
 
   return (
     <main>
-      {/* <h1>Application: Moderation Bois!</h1> */}
-      {/* Need to make components for all the sections here -- these are just placeholder for layout now */}
       <ChannelList channels={channels} setChannels={setChannels} setFlagged={setFlagged} />
       <FlaggedMessages flagged={flagged} setFlagged={setFlagged} />
       <MessageContext activeMessage={activeMessage} />
-      <section className="container"></section>
-      {/* <section className="logo-container">
-        <StreamLogo className="stream-logo" />
-      </section> */}
+      <MessageActions selectedMessages={selectedMessages} selectedUsers={selectedUsers} />
     </main>
   )
 }

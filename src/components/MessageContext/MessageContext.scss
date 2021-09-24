@@ -2,12 +2,12 @@
 
 .message-context-container {
     overflow: auto;
-    padding: 1rem;
 
     >header {
         align-items: center;
-        border-bottom: 1px solid black;
+        border-bottom: 2px solid $primary-light;
         display: flex;
+        height: 2.5rem;
         justify-content: space-between;
 
         >div {
@@ -20,15 +20,9 @@
             }
 
             &.active {
-                background-color: lightblue;
-
-                &.details-tab {
-                    border-top-left-radius: $border-radius;
-                }
-
-                &.sentiment-tab {
-                    border-top-right-radius: $border-radius;
-                }
+                background: $primary;
+                border-top-left-radius: $border-radius;
+                border-top-right-radius: $border-radius;
 
                 >p {
                     color: white;
@@ -39,6 +33,10 @@
 
     >.content-area {
         margin-top: 1rem;
+
+        >pre {
+            color: $primary-light;
+        }
 
         >ul {
             display: flex;
@@ -56,13 +54,15 @@
                 }
 
                 >.message {
+                    background: $gradient;
+                    border: 2px solid $primary-light;
                     border-radius: $border-radius;
                     border-bottom-left-radius: 0;
                     box-shadow: $box-shadow;
                     padding: .5rem 1rem;
 
                     &.flagged {
-                        background-color: lightblue;
+                        background: $primary;
                     }
                 }
             }
@@ -72,6 +72,7 @@
                 justify-content: space-around;
 
                 >li {
+                    background: $gradient;
                     border-radius: $border-radius;
                     box-shadow: $box-shadow;
                     height: 6rem;
@@ -79,23 +80,23 @@
 
                     &.show {
                         &.very-negative {
-                            background-color: darkred;
+                            background: linear-gradient(90deg, rgba(167, 21, 44, 1) 50%, rgba(110, 14, 29, 1) 100%);
                         }
 
                         &.negative {
-                            background-color: red;
+                            background: linear-gradient(90deg, rgba(188, 99, 66, 1) 50%, rgba(119, 63, 42, 1) 100%);
                         }
 
                         &.neutral {
-                            background-color: grey;
+                            background: linear-gradient(90deg, rgba(247, 239, 216, 1) 50%, rgba(175, 169, 153, 1) 100%);
                         }
 
                         &.positive {
-                            background-color: green;
+                            background: linear-gradient(90deg, rgba(31, 157, 133, 1) 50%, rgba(19, 92, 78, 1) 100%);
                         }
 
                         &.very-positive {
-                            background-color: darkgreen;
+                            background: linear-gradient(90deg, rgba(33, 78, 156, 1) 50%, rgba(20, 48, 96, 1) 100%);
                         }
                     }
                 }

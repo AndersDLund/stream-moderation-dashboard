@@ -7,6 +7,9 @@ import './MessageContext.scss';
 import { ChannelService } from '../../services/ChannelService';
 import { ModerationService } from '../../services/ModerationService';
 
+//components
+import { Loader } from '../../shared/components/Loader/Loader';
+
 export const MessageContext = (props) => {
     const { activeMessage } = props
     const [tab, setTab] = useState('details');
@@ -138,7 +141,7 @@ export const MessageContext = (props) => {
     } else {
         return (
             <section className="container message-context-container">
-                <p>Please select a message</p>
+                <Loader message={'Activate a message'} />
             </section>
         )
     }

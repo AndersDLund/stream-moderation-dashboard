@@ -1,0 +1,26 @@
+@import '../../../styles/variables';
+
+.loader-container {
+    align-items: center;
+    display: flex;
+    >.loader {
+        animation: rotate 3s infinite;
+        background: $selected-gradient;
+        border-radius: .5rem;
+        height: 2rem;
+        width: 2rem;
+    }
+    >p {
+        margin-left: 1rem;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
