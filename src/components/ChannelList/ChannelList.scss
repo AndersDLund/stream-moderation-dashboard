@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .channel-list-container {
+    position: relative;
 
     >.search-container {
         align-items: center;
@@ -41,6 +42,29 @@
             margin-top: 1rem;
             padding: .5rem;
             width: 100%;
+
+            &:hover {
+                border-color: $secondary;
+                cursor: pointer;
+
+                >p {
+                    color: $secondary;
+                }
+            }
         }
+    }
+
+    >.clear-search-button {
+        background: linear-gradient(90deg, rgba(167, 21, 44, 1) 50%, rgba(110, 14, 29, 1) 100%);
+        bottom: .5rem;
+        border: none;
+        border-radius: $border-radius;
+        color: $primary-light;
+        left: 0;
+        margin: auto;
+        padding: .25rem;
+        position: absolute;
+        right: 0;
+        width: 5rem;
     }
 }

@@ -10,6 +10,17 @@ import { Loader } from '../../shared/components/Loader/Loader';
 export const MessageActions = (props) => {
     const { selectedMessages, selectedUsers } = props;
     const [tab, setTab] = useState('users');
+    const userActions = [
+        { title: 'ban', executable: () => { } },
+        { title: 'ban for 24 hours', executable: () => { } },
+        { title: 'delete', executable: () => { } },
+        { title: 'delete user(s) & messages', executable: () => { } },
+    ];
+    const messageActions = [
+        { title: 'delete', executable: () => { } },
+        { title: 'unflag', executable: () => { } },
+    ];
+    const [actions, setActions] = useState(userActions);
     const settings = {
         autoplay: true,
         arrows: false,
@@ -33,21 +44,38 @@ export const MessageActions = (props) => {
         );
     }
 
+    const RenderActions = () => {
+        return (
+            <div className="actions-container">
+                {actions.length &&
+                    actions.map((item, i) => (
+                        <button key={i}>{item.title}</button>
+                    ))
+                }
+            </div>
+        );
+    }
+
+    const changeTab = (tab, actions) => {
+        setTab(tab);
+        setActions(actions);
+    }
+
     if (selectedMessages.length) {
         return (
             <section className="container message-actions-container">
                 <nav className="button-container">
                     <ul>
-                        <li className={(tab === 'users' ? ' active' : '')} onClick={() => setTab('users')}>
+                        <li className={(tab === 'users' ? ' active' : '')} onClick={() => changeTab('users', userActions)}>
                             <p>Users</p>
                         </li>
-                        <li className={(tab === 'messages' ? ' active' : '')} onClick={() => setTab('messages')}>
+                        <li className={(tab === 'messages' ? ' active' : '')} onClick={() => changeTab('messages', messageActions)}>
                             <p>Messages</p>
                         </li>
                     </ul>
                 </nav>
                 <div className="message-actions-content">
-                    {/* where actions (buttons) go */}
+                    <RenderActions />
                 </div>
                 <div className="slider-container">
                     <SliderComponent />

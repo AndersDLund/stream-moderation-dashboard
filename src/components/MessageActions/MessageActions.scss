@@ -37,7 +37,22 @@
     }
 
     >.message-actions-content {
+        flex: auto;
         width: 100%;
+
+        >.actions-container {
+            display: flex;
+            flex-direction: column;
+
+            >button {
+                background: linear-gradient(90deg, rgba(31, 157, 133, 1) 50%, rgba(19, 92, 78, 1) 100%);
+                border: 2px solid $primary-light;
+                border-radius: .5rem;
+                color: $primary-light;
+                height: 2.5rem;
+                margin-top: 1rem;
+            }
+        }
     }
 
     >.slider-container {
