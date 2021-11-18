@@ -13,5 +13,10 @@ export const ModerationService = {
         console.log(text, 'TEXT');
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/sentiment`;
         return axios.post(url, { text });
+    },
+    banUser: (userID) => {
+        // userID is an array
+        const url = `${process.env.REACT_APP_BASE_URL}/moderation/user/ban`;
+        return axios.post(url, { userID }); 
     }
 }

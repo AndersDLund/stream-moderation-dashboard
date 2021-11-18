@@ -7,11 +7,23 @@ import './MessageActions.scss';
 // components
 import { Loader } from '../../shared/components/Loader/Loader';
 
+// services
+import { ModerationService } from '../../services/ModerationService';
+
 export const MessageActions = (props) => {
     const { selectedMessages, selectedUsers } = props;
     const [tab, setTab] = useState('users');
+
     const userActions = [
-        { title: 'ban', executable: () => { } },
+        {
+            title: 'ban', executable: async (props) => {
+                try {
+                    await ModerationService.banUser(props.selectedUsers);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
         { title: 'ban for 24 hours', executable: () => { } },
         { title: 'delete', executable: () => { } },
         { title: 'delete user(s) & messages', executable: () => { } },
@@ -20,6 +32,7 @@ export const MessageActions = (props) => {
         { title: 'delete', executable: () => { } },
         { title: 'unflag', executable: () => { } },
     ];
+
     const [actions, setActions] = useState(userActions);
     const settings = {
         autoplay: true,
@@ -49,7 +62,7 @@ export const MessageActions = (props) => {
             <div className="actions-container">
                 {actions.length &&
                     actions.map((item, i) => (
-                        <button key={i}>{item.title}</button>
+                        <button onClick={() => item.executable(props)} key={i}>{item.title}</button>
                     ))
                 }
             </div>
