@@ -24,7 +24,6 @@ export const FlaggedMessages = (props) => {
     const selectMessage = (item) => {
         const message = item.message;
         let flaggedClone = [...flagged];
-        console.log(message);
         const found = flaggedClone.find(flaggedMessage => flaggedMessage.message.id === message.id);
         const index = flaggedClone.findIndex(item => item === found);
 

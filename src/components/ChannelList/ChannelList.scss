@@ -11,10 +11,9 @@
         >input {
             background-color: $primary-light;
             border: none;
-            border-top-left-radius: $border-radius;
-            border-bottom-left-radius: $border-radius;
+            border-radius: $border-radius;
             height: 3rem;
-            width: 80%;
+            width: 100%;
         }
 
         >button {

@@ -32,17 +32,11 @@ export const ChannelList = (props) => {
       setChannels(res);
 
       const channelCIDS = res.map(channel => channel.cid);
-      console.log(channelCIDS);
-      const cidFilter = { channel_cid :{$in:[channelCIDS]}};
-
+      const cidFilter = { channel_cid: { $in: channelCIDS } };
       ModerationService.getFlaggedMessages(cidFilter, {}).then((res) => {
         setFlagged(res.data);
       }).catch(err => console.log(err, 'WHAT THE HECK'))
     }, []);
-
-    // ModerationService.getFlaggedMessages(cidFilter, {}).then((res) => {
-    //   setFlagged(res.data);
-    // });
   };
 
   const updateInputValue = (cidInput) => {
@@ -66,7 +60,6 @@ export const ChannelList = (props) => {
 
   const selectChannel = (channel) => {
     ModerationService.getFlaggedMessages({ channel_cid: channel.cid }, {}).then((res) => {
-      console.log(res);
       setFlagged(res.data);
       setChannels([channel])
     });

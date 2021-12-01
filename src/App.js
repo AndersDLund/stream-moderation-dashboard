@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { StreamChat } from 'stream-chat';
+
 // styles
 import './App.scss';
 import "slick-carousel/slick/slick.css";
@@ -24,6 +26,8 @@ const App = () => {
   const [selectedMessages, setSelectedMessages] = useState([])
   const [selectedUsers, setSelectedUsers] = useState([]);
 
+  const chatClient = StreamChat.getInstance(process.env.REACT_APP_API_KEY);
+
   useEffect(async () => {
     try {
       setup();
@@ -33,6 +37,19 @@ const App = () => {
   }, []);
 
   useEffect((data) => {
+
+    chatClient.on(event => {
+      if (event.type === 'flagged_message') {
+        const message = JSON.parse(event.content).message;
+
+        if (flagged.indexOf(message) === -1) {
+          const flaggedClone = [...flagged];
+          flaggedClone.unshift({message, user: message.user});
+          setFlagged(flaggedClone);
+        }
+      }
+    })
+
     if (flagged.length > 0) {
       const active = flagged.filter(message => message.active)[0];
       const messages = flagged.filter(message => message.selected);
