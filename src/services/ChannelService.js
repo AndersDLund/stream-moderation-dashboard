@@ -9,7 +9,6 @@ export const ChannelService = {
     },
 
     getMessageContext: (cid, mid) => {
-        console.log(mid);
         const channelType = cid.split(':')[0];
         const channelID = cid.split(':')[1];
 

@@ -19,7 +19,7 @@ import { ChannelService } from './services/ChannelService';
 import { ModerationService } from './services/ModerationService';
 
 const App = () => {
-  const [connectedUser, setConnectedUser] = useState(null);
+  // const [connectedUser, setConnectedUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [flagged, setFlagged] = useState([]);
   const [activeMessage, setActiveMessage] = useState(null);
@@ -28,7 +28,7 @@ const App = () => {
 
   const chatClient = StreamChat.getInstance(process.env.REACT_APP_API_KEY);
 
-  useEffect(async () => {
+  useEffect(() => {
     try {
       setup();
     } catch (error) {
@@ -54,18 +54,18 @@ const App = () => {
       const active = flagged.filter(message => message.active)[0];
       const messages = flagged.filter(message => message.selected);
       const users = messages.map(message => message.user.id);
-      setSelectedUsers([... new Set(users)]);
+      setSelectedUsers([...new Set(users)]);
       setActiveMessage(active);
       setSelectedMessages(messages);
     }
-  }, [flagged])
+  }, [flagged, chatClient])
 
   const setup = async () => {
-    const connectResponse = await ConnectionService.connect({ id: process.env.REACT_APP_USER_ID }, process.env.REACT_APP_USER_TOKEN);
+    await ConnectionService.connect({ id: process.env.REACT_APP_USER_ID }, process.env.REACT_APP_USER_TOKEN);
     const channelsResponse = await ChannelService.getChannels({}, {}, {});
     const flaggedResponse = await ModerationService.getFlaggedMessages({}, {});
 
-    setConnectedUser(connectResponse.me);
+    // setConnectedUser(connectResponse.me);
     setChannels(channelsResponse);
     setFlagged(flaggedResponse.data);
   }

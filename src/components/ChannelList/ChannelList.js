@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./ChannelList.scss";
 import { StreamChat } from "stream-chat";
 import { ModerationService } from "../../services/ModerationService";
@@ -12,7 +12,7 @@ const sort = { last_message_at: -1 };
 export const ChannelList = (props) => {
   // use effect variables
   // const [channels, setChannels] = useState([])
-  const [channelID, setChannelID] = useState("");
+  // const [channelID, setChannelID] = useState("");
   // other variables
   const { channels, setChannels, setFlagged } = props;
 
@@ -21,7 +21,7 @@ export const ChannelList = (props) => {
     chatClient.queryChannels(filter, sort, {}).then((res) => {
       setChannels(res);
     });
-  }, []);
+  }, [setChannels]);
 
   const updateChannelList = (input) => {
     // const filter = { id: channelID };
@@ -40,7 +40,7 @@ export const ChannelList = (props) => {
   };
 
   const updateInputValue = (cidInput) => {
-    setChannelID(cidInput);
+    // setChannelID(cidInput);
 
     setTimeout(() => {
       if (cidInput.length > 0) {
