@@ -7,11 +7,22 @@ import './MessageActions.scss';
 // components
 import { Loader } from '../../shared/components/Loader/Loader';
 
+// services
+import { ModerationService } from '../../services/ModerationService';
+
+
+
 export const MessageActions = (props) => {
     const { selectedMessages, selectedUsers } = props;
+    console.log(selectedUsers)
     const [tab, setTab] = useState('users');
+    const banUser = () => {
+        console.log("hi")
+        console.log(selectedUsers)
+      }
     const userActions = [
-        { title: 'ban', executable: () => { } },
+        { title: 'ban', executable: banUser()
+    },
         { title: 'ban for 24 hours', executable: () => { } },
         { title: 'delete', executable: () => { } },
         { title: 'delete user(s) & messages', executable: () => { } },
@@ -49,7 +60,7 @@ export const MessageActions = (props) => {
             <div className="actions-container">
                 {actions.length &&
                     actions.map((item, i) => (
-                        <button key={i}>{item.title}</button>
+                        <button onClick={item.executable} key={i}>{item.title}</button>
                     ))
                 }
             </div>
