@@ -46,18 +46,17 @@
             padding: 0;
 
             >li {
-                align-self: flex-end;
+                align-self: flex-start;
                 margin-top: 1rem;
 
                 &.sender {
-                    align-self: flex-start;
+                    align-self: flex-end;
                 }
 
                 >.message {
                     background: $gradient;
                     border: 2px solid $primary-light;
                     border-radius: $border-radius;
-                    border-bottom-left-radius: 0;
                     box-shadow: $box-shadow;
                     padding: .5rem 1rem;
 

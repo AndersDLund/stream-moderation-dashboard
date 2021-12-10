@@ -64,7 +64,7 @@ export const MessageContext = (props) => {
                 <ul className="pill-container">
                     {messageSentiment &&
                         sentimentMap.map((item, i) => (
-                            <li className={
+                            <li key={i} className={
                                 (item) +
                                 ((messageSentiment.comparative < 0 && i <= 5 && i >= (messageSentiment.comparative + 5)) ? ' show' : '') +
                                 ((messageSentiment.comparative > 0 && i >= 5 && i <= (messageSentiment.comparative + 5)) ? ' show' : '') +
@@ -86,7 +86,7 @@ export const MessageContext = (props) => {
                         messages.map((item, i) =>
                             <li key={i}
                                 className={
-                                    (item.user.id === activeMessage.user.id ? 'sender' : 'receiver')
+                                    (item.user.id === activeMessage.user.id ? 'sender' : '')
                                 }
                             >
                                 <div className={(item.id === activeMessage.message.id ? 'flagged' : '') + ' message'}>

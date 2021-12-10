@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { StreamChat } from 'stream-chat';
+
 // styles
 import './App.scss';
 import "slick-carousel/slick/slick.css";
@@ -17,14 +19,16 @@ import { ChannelService } from './services/ChannelService';
 import { ModerationService } from './services/ModerationService';
 
 const App = () => {
-  const [connectedUser, setConnectedUser] = useState(null);
+  // const [connectedUser, setConnectedUser] = useState(null);
   const [channels, setChannels] = useState([]);
   const [flagged, setFlagged] = useState([]);
   const [activeMessage, setActiveMessage] = useState(null);
   const [selectedMessages, setSelectedMessages] = useState([])
   const [selectedUsers, setSelectedUsers] = useState([]);
 
-  useEffect(async () => {
+  const chatClient = StreamChat.getInstance(process.env.REACT_APP_API_KEY);
+
+  useEffect(() => {
     try {
       setup();
     } catch (error) {
@@ -33,22 +37,35 @@ const App = () => {
   }, []);
 
   useEffect((data) => {
+
+    chatClient.on(event => {
+      if (event.type === 'flagged_message') {
+        const message = JSON.parse(event.content).message;
+
+        if (flagged.indexOf(message) === -1) {
+          const flaggedClone = [...flagged];
+          flaggedClone.unshift({message, user: message.user});
+          setFlagged(flaggedClone);
+        }
+      }
+    })
+
     if (flagged.length > 0) {
       const active = flagged.filter(message => message.active)[0];
       const messages = flagged.filter(message => message.selected);
       const users = messages.map(message => message.user.id);
-      setSelectedUsers([... new Set(users)]);
+      setSelectedUsers([...new Set(users)]);
       setActiveMessage(active);
       setSelectedMessages(messages);
     }
-  }, [flagged])
+  }, [flagged, chatClient])
 
   const setup = async () => {
-    const connectResponse = await ConnectionService.connect({ id: process.env.REACT_APP_USER_ID }, process.env.REACT_APP_USER_TOKEN);
+    await ConnectionService.connect({ id: process.env.REACT_APP_USER_ID }, process.env.REACT_APP_USER_TOKEN);
     const channelsResponse = await ChannelService.getChannels({}, {}, {});
     const flaggedResponse = await ModerationService.getFlaggedMessages({}, {});
 
-    setConnectedUser(connectResponse.me);
+    // setConnectedUser(connectResponse.me);
     setChannels(channelsResponse);
     setFlagged(flaggedResponse.data);
   }

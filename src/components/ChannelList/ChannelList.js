@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./ChannelList.scss";
 import { StreamChat } from "stream-chat";
 import { ModerationService } from "../../services/ModerationService";
@@ -12,7 +12,7 @@ const sort = { last_message_at: -1 };
 export const ChannelList = (props) => {
   // use effect variables
   // const [channels, setChannels] = useState([])
-  const [channelID, setChannelID] = useState("");
+  // const [channelID, setChannelID] = useState("");
   // other variables
   const { channels, setChannels, setFlagged } = props;
 
@@ -21,7 +21,7 @@ export const ChannelList = (props) => {
     chatClient.queryChannels(filter, sort, {}).then((res) => {
       setChannels(res);
     });
-  }, []);
+  }, [setChannels]);
 
   const updateChannelList = (input) => {
     // const filter = { id: channelID };
@@ -32,21 +32,15 @@ export const ChannelList = (props) => {
       setChannels(res);
 
       const channelCIDS = res.map(channel => channel.cid);
-      console.log(channelCIDS);
-      const cidFilter = { channel_cid :{$in:[channelCIDS]}};
-
+      const cidFilter = { channel_cid: { $in: channelCIDS } };
       ModerationService.getFlaggedMessages(cidFilter, {}).then((res) => {
         setFlagged(res.data);
       }).catch(err => console.log(err, 'WHAT THE HECK'))
     }, []);
-
-    // ModerationService.getFlaggedMessages(cidFilter, {}).then((res) => {
-    //   setFlagged(res.data);
-    // });
   };
 
   const updateInputValue = (cidInput) => {
-    setChannelID(cidInput);
+    // setChannelID(cidInput);
 
     setTimeout(() => {
       if (cidInput.length > 0) {
@@ -66,7 +60,6 @@ export const ChannelList = (props) => {
 
   const selectChannel = (channel) => {
     ModerationService.getFlaggedMessages({ channel_cid: channel.cid }, {}).then((res) => {
-      console.log(res);
       setFlagged(res.data);
       setChannels([channel])
     });
