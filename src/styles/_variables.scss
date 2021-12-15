@@ -1,3 +1,6 @@
+// Inter Font from Google
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 //colors
 $primary: #005fff;
 $secondary: #33e984;
@@ -12,6 +15,7 @@ $failure: #A7152C;
 $disabled: #D6D6C4;
 
 //fonts
+$font-primary: 'Inter', sans-serif;
 
 //miscellaneous
 $gradient: linear-gradient(90deg, rgba(252,252,252,0.9934348739495799) 50%, rgba(237,236,236,1) 100%);

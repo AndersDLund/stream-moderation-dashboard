@@ -1,6 +1,4 @@
 @import './variables';
-// Inter Font from Google
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 html {
   box-sizing: border-box;
@@ -19,14 +17,18 @@ body {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-  font-weight: normal;
 }
 
 p {
   color: $foreground;
+  font-family: $font-primary;
+  font-weight: normal;
   margin: 0;
   padding: 0;
+}
+
+button {
+  font-family: $font-primary;
 }
 
 .container {
