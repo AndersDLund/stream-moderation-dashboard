@@ -9,21 +9,11 @@
         justify-content: space-between;
 
         >input {
-            background-color: $primary-light;
-            border: none;
+            background-color: $background;
+            border: 2px solid $foreground;
             border-radius: $border-radius;
             height: 3rem;
             width: 100%;
-        }
-
-        >button {
-            background-color: $disabled;
-            border: none;
-            border-top-right-radius: $border-radius;
-            border-bottom-right-radius: $border-radius;
-            color: $primary-dark;
-            height: 3rem;
-            width: 20%;
         }
     }
 
@@ -34,7 +24,7 @@
 
         >li {
             align-items: center;
-            border-bottom: 2px solid $primary-light;
+            border-bottom: 2px solid $foreground;
             display: flex;
             height: 3rem;
             justify-content: flex-start;
@@ -42,23 +32,26 @@
             padding: .5rem;
             width: 100%;
 
+            transition: all 1s;
+
             &:hover {
-                border-color: $secondary;
+                border-color: $primary;
                 cursor: pointer;
 
                 >p {
-                    color: $secondary;
+                    color: $primary;
                 }
             }
         }
     }
 
     >.clear-search-button {
-        background: linear-gradient(90deg, rgba(167, 21, 44, 1) 50%, rgba(110, 14, 29, 1) 100%);
+        background: $primary;
         bottom: .5rem;
         border: none;
         border-radius: $border-radius;
-        color: $primary-light;
+        color: $background;
+        cursor: pointer;
         left: 0;
         margin: auto;
         padding: .25rem;

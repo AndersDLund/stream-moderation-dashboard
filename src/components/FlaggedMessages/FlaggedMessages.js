@@ -4,6 +4,7 @@ import './FlaggedMessages.scss';
 
 export const FlaggedMessages = (props) => {
     const { flagged, setFlagged } = props;
+    console.log(flagged);
 
     const setActiveMessage = (item) => {
         const message = item.message;

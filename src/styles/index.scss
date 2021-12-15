@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: $primary-dark;
+  background-color: $background;
   margin: 0;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -20,14 +20,14 @@ body {
 }
 
 p {
-  color: $primary-light;
+  color: $foreground;
   margin: 0;
   padding: 0;
 }
 
 .container {
   border-radius: $border-radius;
-  border: 2px solid $primary-light;
+  border: 2px solid $foreground;
   box-shadow: $box-shadow;
   background: $gradient;
   padding: 1rem;

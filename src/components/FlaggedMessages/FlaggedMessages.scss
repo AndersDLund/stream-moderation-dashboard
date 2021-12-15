@@ -9,7 +9,9 @@
         padding: 0;
 
         >li {
+            align-items: center;
             display: flex;
+            // justify-content: center;
             margin-top: 1rem;
 
             &:first-of-type {
@@ -18,32 +20,36 @@
 
             >.message-select {
                 background: $gradient;
-                border: 2px solid $primary-light;
-                border-radius: $border-radius;
+                border: 2px solid $foreground;
+                border-radius: .5rem;
                 box-shadow: $box-shadow;
-                height: auto;
+                height: 2rem;
                 margin-right: 1rem;
-                width: 10%;
+                width: 2rem;
                 z-index: 1;
 
                 &.selected {
-                    background: $selected-gradient;
+                    background: $primary;
                 }
             }
 
             >.message-container {
                 background: $gradient;
-                border: 2px solid $primary-light;
+                border: 2px solid $foreground;
                 border-radius: $border-radius;
                 box-shadow: $box-shadow;
                 display: flex;
                 justify-content: space-between;
                 height: 5rem;
                 padding: 1rem;
-                width: 90%;
+                width: 100%;
 
                 &.active {
-                    background: $selected-gradient;
+                    background: $primary;
+
+                    p {
+                        color: $background;
+                    }
                 }
 
                 >.message-details-container {

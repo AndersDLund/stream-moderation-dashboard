@@ -30,7 +30,7 @@
 
                 &.active {
                     background: $gradient;
-                    border: 2px solid $primary-light;
+                    border: 2px solid $foreground;
                 }
             }
         }
@@ -45,10 +45,10 @@
             flex-direction: column;
 
             >button {
-                background: linear-gradient(90deg, rgba(31, 157, 133, 1) 50%, rgba(19, 92, 78, 1) 100%);
-                border: 2px solid $primary-light;
+                background: $primary;
+                border: 2px solid $foreground;
                 border-radius: .5rem;
-                color: $primary-light;
+                color: $background;
                 height: 2.5rem;
                 margin-top: 1rem;
             }

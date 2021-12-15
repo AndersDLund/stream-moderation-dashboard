@@ -5,7 +5,7 @@
 
     >header {
         align-items: center;
-        border-bottom: 2px solid $primary-light;
+        border-bottom: 2px solid $foreground;
         display: flex;
         height: 2.5rem;
         justify-content: space-between;
@@ -35,7 +35,7 @@
         margin-top: 1rem;
 
         >pre {
-            color: $primary-light;
+            color: $foreground;
         }
 
         >ul {
@@ -55,13 +55,17 @@
 
                 >.message {
                     background: $gradient;
-                    border: 2px solid $primary-light;
+                    border: 2px solid $foreground;
                     border-radius: $border-radius;
                     box-shadow: $box-shadow;
                     padding: .5rem 1rem;
 
                     &.flagged {
                         background: $primary;
+
+                        p {
+                            color: $background;
+                        }
                     }
                 }
             }
@@ -79,23 +83,23 @@
 
                     &.show {
                         &.very-negative {
-                            background: linear-gradient(90deg, rgba(167, 21, 44, 1) 50%, rgba(110, 14, 29, 1) 100%);
+                            background: $secondary;
                         }
 
                         &.negative {
-                            background: linear-gradient(90deg, rgba(188, 99, 66, 1) 50%, rgba(119, 63, 42, 1) 100%);
+                            background: $tertiary;
                         }
 
                         &.neutral {
-                            background: linear-gradient(90deg, rgba(247, 239, 216, 1) 50%, rgba(175, 169, 153, 1) 100%);
+                            background: #b3b3b3;
                         }
 
                         &.positive {
-                            background: linear-gradient(90deg, rgba(31, 157, 133, 1) 50%, rgba(19, 92, 78, 1) 100%);
+                            background: $tertiary;
                         }
 
                         &.very-positive {
-                            background: linear-gradient(90deg, rgba(33, 78, 156, 1) 50%, rgba(20, 48, 96, 1) 100%);
+                            background: $secondary;
                         }
                     }
                 }

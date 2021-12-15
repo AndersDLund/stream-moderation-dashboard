@@ -5,7 +5,7 @@
     display: flex;
     >.loader {
         animation: rotate 3s infinite;
-        background: $selected-gradient;
+        background: $primary;
         border-radius: .5rem;
         height: 2rem;
         width: 2rem;

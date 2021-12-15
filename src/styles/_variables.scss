@@ -1,8 +1,9 @@
 //colors
-$primary: #214E9C;
-$secondary: #DFCF4C;
-$primary-dark: #0D1A20;
-$primary-light: #F7EFD8;
+$primary: #005fff;
+$secondary: #33e984;
+$tertiary: #76fff1;
+$background: #fcfcfc;
+$foreground: #202426;
 
 $success: #1F9D85;
 $warning: #BC6342;
@@ -13,8 +14,9 @@ $disabled: #D6D6C4;
 //fonts
 
 //miscellaneous
-$gradient: linear-gradient(90deg, rgba(13,26,32,1) 50%, rgba(25,50,61,1) 100%);
-$selected-gradient: linear-gradient(90deg, rgba(33,78,156,1) 50%, rgba(25,50,61,1) 100%);
+$gradient: linear-gradient(90deg, rgba(252,252,252,0.9934348739495799) 50%, rgba(237,236,236,1) 100%);
+$selected-gradient: linear-gradient(90deg, $primary 31%, $background 100%);
+
 $border-radius: 1rem;
 $box-shadow:
 0 1px 2px rgba(0,0,0,0.12), 
