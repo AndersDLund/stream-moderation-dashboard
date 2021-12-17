@@ -46,11 +46,11 @@
             padding: 0;
 
             >li {
-                align-self: flex-start;
+                align-self: end;
                 margin-top: 1rem;
 
                 &.sender {
-                    align-self: flex-end;
+                    align-self: start;
                 }
 
                 >.message {

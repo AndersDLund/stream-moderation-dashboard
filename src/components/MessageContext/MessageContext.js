@@ -78,21 +78,35 @@ export const MessageContext = (props) => {
         );
     };
 
+    const RenderListItem = (item, i) => {
+        switch (item) {
+            case item.deleted_at:
+                return <p>deleted</p>;
+            case item.attachments.length:
+                return <p>img</p>;
+            default:
+                return (
+                    <li key={i}
+                        className={
+                            (activeMessage.message.user.id === item.user.id ? 'sender' : '')
+                        }
+                    >
+                        <div className={(item.id === activeMessage.message.id ? 'flagged' : '') + ' message'}>
+                            <p>{item.text}</p>
+                        </div>
+                    </li>
+                )
+                break;
+        }
+    }
+
     const MessageContextComponent = () => {
         return (
             <div className="content-area">
                 <ul>
                     {messages &&
                         messages.map((item, i) =>
-                            <li key={i}
-                                className={
-                                    (item.user.id === activeMessage.user.id ? 'sender' : '')
-                                }
-                            >
-                                <div className={(item.id === activeMessage.message.id ? 'flagged' : '') + ' message'}>
-                                    <p>{item.text}</p>
-                                </div>
-                            </li>
+                            RenderListItem(item, i)
                         )
                     }
                 </ul>
