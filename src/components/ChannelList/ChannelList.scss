@@ -1,6 +1,7 @@
 @import '../../styles/variables';
 
 .channel-list-container {
+    overflow: auto;
     position: relative;
 
     >.search-container {
@@ -12,8 +13,25 @@
             background-color: $background;
             border: 2px solid $foreground;
             border-radius: $border-radius;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
             height: 3rem;
             width: 100%;
+        }
+        >.clear-search-button {
+            background: $failure;
+            border: 2px solid $foreground;
+            border-left: none;
+            border-bottom-right-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+            color: $background;
+            cursor: pointer;
+            height: 3rem;
+            width: 5rem;
+
+            &:hover {
+                background: $hover-failure;
+            }
         }
     }
 
@@ -45,18 +63,20 @@
         }
     }
 
-    >.clear-search-button {
-        background: $primary;
-        bottom: .5rem;
-        border: none;
-        border-radius: $border-radius;
-        color: $background;
-        cursor: pointer;
-        left: 0;
-        margin: auto;
-        padding: .25rem;
-        position: absolute;
-        right: 0;
-        width: 5rem;
-    }
+    // >.clear-search-button {
+    //     background: $primary;
+    //     bottom: .5rem;
+    //     border: none;
+    //     border-radius: $border-radius;
+    //     color: $background;
+    //     cursor: pointer;
+    //     // height: 1rem;
+    //     left: 0;
+    //     margin: auto;
+    //     padding: .25rem;
+    //     position: sticky;
+    //     right: 0;
+    //     top: calc( 100vh - .5rem );;
+    //     width: 5rem;
+    // }
 }

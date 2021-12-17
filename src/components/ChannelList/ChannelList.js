@@ -69,7 +69,7 @@ export const ChannelList = (props) => {
     <section className="container channel-list-container">
       <div className="search-container">
         <input onChange={(e) => updateInputValue(e.target.value)}></input>
-        {/* <button onClick={(e) => updateChannelList()}>GO</button> */}
+        <button className='clear-search-button' onClick={() => clear()}>clear</button>
       </div>
       <ul>
         {channels.map((channel, i) => (
@@ -78,7 +78,6 @@ export const ChannelList = (props) => {
           </li>
         ))}
       </ul>
-      <button className='clear-search-button' onClick={() => clear()}>clear</button>
     </section>
   );
 };

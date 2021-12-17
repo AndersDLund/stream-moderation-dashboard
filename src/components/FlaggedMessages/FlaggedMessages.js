@@ -4,7 +4,6 @@ import './FlaggedMessages.scss';
 
 export const FlaggedMessages = (props) => {
     const { flagged, setFlagged } = props;
-    console.log(flagged);
 
     const setActiveMessage = (item) => {
         const message = item.message;
@@ -18,6 +17,10 @@ export const FlaggedMessages = (props) => {
             }
             const index = flaggedClone.findIndex(item => item === found);
             flaggedClone[index].active = true;
+            setFlagged(flaggedClone);
+        } else if (found && found.active) {
+            const index = flaggedClone.findIndex(item => item === found);
+            flaggedClone[index].active = false;
             setFlagged(flaggedClone);
         }
     }
@@ -51,7 +54,8 @@ export const FlaggedMessages = (props) => {
                                 <p>{item.message.text}</p>
                             </div>
                         </div>
-                    </li>)
+                    </li>
+                    )
                 }
             </ul>
         </section>

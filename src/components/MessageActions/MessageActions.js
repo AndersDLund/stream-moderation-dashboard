@@ -11,8 +11,7 @@ import { Loader } from '../../shared/components/Loader/Loader';
 import { ModerationService } from '../../services/ModerationService';
 
 export const MessageActions = (props) => {
-    const { selectedMessages, selectedUsers } = props;
-    console.log(selectedUsers)
+    const { selectedMessages, selectedUsers, flagged, setFlagged } = props;
     const [tab, setTab] = useState('users');
 
     const userActions = [
@@ -26,47 +25,60 @@ export const MessageActions = (props) => {
             }
         },
         // Step 2 copy ban for each of the following 
-        { title: 'ban for 24 hours', executable: async (props) => {
-            try {
-                await ModerationService.banUser24(props.selectedUsers);
-            } catch (error) {
-                console.error(error);
+        {
+            title: 'ban for 24 hours', executable: async (props) => {
+                try {
+                    await ModerationService.banUser24(props.selectedUsers);
+                } catch (error) {
+                    console.error(error);
+                }
             }
-         } },
-         
-        { title: 'delete', executable: async (props) => {
-            try {
-                await ModerationService.deleteUser(props.selectedUsers);
-            } catch (error) {
-                console.error(error);
-            }
-         } },
+        },
 
-        { title: 'delete user(s) & messages', executable: async (props) => {
-            try {
-                await ModerationService.deleteUserAndMessages(props.selectedUsers);
-            } catch (error) {
-                console.error(error);
+        {
+            title: 'delete', executable: async (props) => {
+                try {
+                    await ModerationService.deleteUser(props.selectedUsers);
+                } catch (error) {
+                    console.error(error);
+                }
             }
-         } },
+        },
+
+        {
+            title: 'delete user(s) & messages', executable: async (props) => {
+                try {
+                    await ModerationService.deleteUserAndMessages(props.selectedUsers);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
     ];
     // for message action use props.selectedMessages
     const messageActions = [
-        { title: 'delete', executable: async (props) => {
-            try {
-                await ModerationService.deleteMessage(props.selectedMessages);
-            } catch (error) {
-                console.error(error);
-            } 
-         } },
+        {
+            title: 'delete', executable: async (props) => {
+                try {
+                    await ModerationService.deleteMessage(props.selectedMessages);
+                    const flaggedClone = [...flagged];
+                    const removed = flaggedClone.filter(item => !props.selectedMessages.includes(item));
+                    setFlagged(removed);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
 
-        { title: 'unflag', executable: async (props) => {
-            // try {
-            //     await ModerationService.unflagMessage(props.selectedMessages);
-            // } catch (error) {
-            //     console.error(error);
-            // } 
-         } },
+        {
+            title: 'unflag', executable: async (props) => {
+                // try {
+                //     await ModerationService.unflagMessage(props.selectedMessages);
+                // } catch (error) {
+                //     console.error(error);
+                // } 
+            }
+        },
     ];
 
     const [actions, setActions] = useState(userActions);

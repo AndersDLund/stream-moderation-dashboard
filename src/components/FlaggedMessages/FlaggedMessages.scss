@@ -23,13 +23,22 @@
                 border: 2px solid $foreground;
                 border-radius: .5rem;
                 box-shadow: $box-shadow;
+                cursor: pointer;
                 height: 2rem;
                 margin-right: 1rem;
                 width: 2rem;
                 z-index: 1;
 
+                &:hover {
+                    background: $hover-background
+                }
+
                 &.selected {
                     background: $primary;
+
+                    &:hover {
+                        background: $hover-primary
+                    }
                 }
             }
 
@@ -38,14 +47,23 @@
                 border: 2px solid $foreground;
                 border-radius: $border-radius;
                 box-shadow: $box-shadow;
+                cursor: pointer;
                 display: flex;
                 justify-content: space-between;
                 height: 5rem;
                 padding: 1rem;
                 width: 100%;
 
+                &:hover {
+                    background: $hover-background
+                }
+
                 &.active {
                     background: $primary;
+
+                    &:hover {
+                        background: $hover-primary
+                    }
 
                     p {
                         color: $background;

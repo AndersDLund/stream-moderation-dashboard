@@ -27,8 +27,13 @@ p {
   padding: 0;
 }
 
+h1 {
+  font-family: $font-primary;
+}
+
 button {
   font-family: $font-primary;
+  font-weight: normal;
 }
 
 .container {

@@ -7,6 +7,9 @@ import './App.scss';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// assets
+import { ReactComponent as Logo } from './assets/stream_logo.svg'
+
 // components
 import { FlaggedMessages } from './components/FlaggedMessages/FlaggedMessages';
 import { ChannelList } from './components/ChannelList/ChannelList';
@@ -44,7 +47,7 @@ const App = () => {
 
         if (flagged.indexOf(message) === -1) {
           const flaggedClone = [...flagged];
-          flaggedClone.unshift({message, user: message.user});
+          flaggedClone.unshift({ message, user: message.user });
           setFlagged(flaggedClone);
         }
       }
@@ -72,10 +75,16 @@ const App = () => {
 
   return (
     <main>
+      <section className='logo-container'>
+        <Logo />
+      </section>
       <ChannelList channels={channels} setChannels={setChannels} setFlagged={setFlagged} />
       <FlaggedMessages flagged={flagged} setFlagged={setFlagged} />
       <MessageContext activeMessage={activeMessage} />
-      <MessageActions selectedMessages={selectedMessages} selectedUsers={selectedUsers} />
+      <header>
+        <h1>Stream.io Moderator Dashboard Template</h1>
+      </header>
+      <MessageActions selectedMessages={selectedMessages} selectedUsers={selectedUsers} flagged={flagged} setFlagged={setFlagged} />
     </main>
   )
 }
