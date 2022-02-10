@@ -49,11 +49,26 @@ const App = () => {
 
         if (flagged.indexOf(message) === -1) {
           const flaggedClone = [...flagged];
-          flaggedClone.unshift({ message, user: message.user });
-          setFlagged(flaggedClone);
+          const channelsClone = [...channels];
+
+          if (channelsClone.length) {
+            const index = channelsClone.findIndex(channel => channel.cid === message.cid);
+
+            if (channelsClone[index].flagged_count) {
+              channelsClone[index].flagged_count += 1;
+            } else {
+              channelsClone[index].flagged_count = 1;
+            }
+            setChannels(channelsClone);
+          }
+
+          if (flaggedClone.length) {
+            flaggedClone.unshift({ message, user: message.user });
+            setFlagged(flaggedClone);
+          }
         }
       }
-    })
+    });
 
     if (flagged.length > 0) {
       const active = flagged.filter(message => message.active)[0];
@@ -79,9 +94,9 @@ const App = () => {
         flaggedMap[item.message.cid] = 1;
       }
     });
-    
-    channelsResponse.forEach(channel => channel.flagged_count = flaggedMap[channel.cid] | 0);
 
+    channelsResponse.forEach(channel => channel.flagged_count = flaggedMap[channel.cid] | 0);
+    console.log(flaggedResponse.data);
     // setConnectedUser(connectResponse.me);
     setChannels(channelsResponse);
     setFlagged(flaggedResponse.data);
