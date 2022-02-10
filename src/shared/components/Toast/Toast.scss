@@ -1,0 +1,44 @@
+@import '../../../styles/variables';
+
+.toast-container {
+    animation: fadeUp 5s linear;
+    background: $failure;
+    border-radius: $border-radius;
+    height: 5rem;
+    left: 1rem;
+    padding: .5rem;
+    position: absolute;
+    right: 1rem;
+    z-index: 100;
+
+    &.success {
+        background-color: $success;
+    }
+
+    >p {
+        color: $background;
+
+        &:first-of-type {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(.5rem);
+    }
+}

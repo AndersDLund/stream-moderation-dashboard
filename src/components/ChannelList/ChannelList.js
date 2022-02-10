@@ -35,7 +35,7 @@ export const ChannelList = (props) => {
       const cidFilter = { channel_cid: { $in: channelCIDS } };
       ModerationService.getFlaggedMessages(cidFilter, {}).then((res) => {
         setFlagged(res.data);
-      }).catch(err => console.log(err, 'WHAT THE HECK'))
+      }).catch(err => console.log(err))
     }, []);
   };
 
@@ -75,6 +75,7 @@ export const ChannelList = (props) => {
         {channels.map((channel, i) => (
           <li key={i} onClick={() => selectChannel(channel)}>
             <p>{channel.id}</p>
+            <p>{channel.flagged_count}</p>
           </li>
         ))}
       </ul>

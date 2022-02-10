@@ -96,7 +96,6 @@ export const MessageContext = (props) => {
                         </div>
                     </li>
                 )
-                break;
         }
     }
 

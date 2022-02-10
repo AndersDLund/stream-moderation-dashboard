@@ -15,6 +15,7 @@ import { FlaggedMessages } from './components/FlaggedMessages/FlaggedMessages';
 import { ChannelList } from './components/ChannelList/ChannelList';
 import { MessageContext } from './components/MessageContext/MessageContext';
 import { MessageActions } from './components/MessageActions/MessageActions';
+import { Toast } from './shared/components/Toast/Toast';
 
 // services
 import { ConnectionService } from './services/ConnectionService';
@@ -28,6 +29,7 @@ const App = () => {
   const [activeMessage, setActiveMessage] = useState(null);
   const [selectedMessages, setSelectedMessages] = useState([])
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [toast, setToast] = useState({ show: false, text: '', success: null });
 
   const chatClient = StreamChat.getInstance(process.env.REACT_APP_API_KEY);
 
@@ -68,6 +70,18 @@ const App = () => {
     const channelsResponse = await ChannelService.getChannels({}, {}, {});
     const flaggedResponse = await ModerationService.getFlaggedMessages({}, {});
 
+    const flaggedMap = {};
+
+    flaggedResponse.data.forEach((item) => {
+      if (flaggedMap[item.message.cid]) {
+        flaggedMap[item.message.cid] += 1;
+      } else {
+        flaggedMap[item.message.cid] = 1;
+      }
+    });
+    
+    channelsResponse.forEach(channel => channel.flagged_count = flaggedMap[channel.cid] | 0);
+
     // setConnectedUser(connectResponse.me);
     setChannels(channelsResponse);
     setFlagged(flaggedResponse.data);
@@ -75,6 +89,9 @@ const App = () => {
 
   return (
     <main>
+      {toast.show &&
+        <Toast text={toast.text} success={toast.success} />
+      }
       <section className='logo-container'>
         <Logo />
       </section>
@@ -84,7 +101,7 @@ const App = () => {
       <header>
         <h1>Stream.io Moderator Dashboard Template</h1>
       </header>
-      <MessageActions selectedMessages={selectedMessages} selectedUsers={selectedUsers} flagged={flagged} setFlagged={setFlagged} />
+      <MessageActions selectedMessages={selectedMessages} selectedUsers={selectedUsers} flagged={flagged} setFlagged={setFlagged} toast={toast} setToast={setToast} />
     </main>
   )
 }

@@ -11,40 +11,40 @@ export const ModerationService = {
         return axios.post(url, { text });
     },
     // Step 1 for placing methods / copy banUser with correct parameters
-    banUser: (userID) => {
+    banUser: (userIds) => {
         // userID is an array
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/user/ban`;
-        return axios.post(url, { userID }); 
+        return axios.post(url, { userIds });
     },
 
-    banUser24: (userID) => {
+    banUser24: (userIds) => {
         // userID is an array
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/user/ban24`;
-        return axios.post(url, { userID }); 
+        return axios.post(url, { userIds });
     },
 
-    deleteUser: (userID) => {
+    deleteUser: (userIds) => {
         // userID is an array
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/user/delete`;
-        return axios.post(url, { userID }); 
+        return axios.post(url, { userIds });
     },
 
-    deleteUserAndMessages: (userID) => {
+    deleteUserAndMessages: (userIds) => {
         // userID is an array
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/user/deleteUserAndMessages`;
-        return axios.post(url, { userID }); 
+        return axios.post(url, { userIds });
     },
 
-    deleteMessage: (messageID) => {
-        // userID is an array
+    deleteMessage: (messages) => {
+        // messages is an array of message IDs
         const url = `${process.env.REACT_APP_BASE_URL}/moderation/message/delete`;
-        return axios.post(url, { messageID }); 
+        return axios.post(url, { messages });
     },
 
-    unflagMessage: (messageID) => {
-        // userID is an array
-        const url = `${process.env.REACT_APP_BASE_URL}/moderation/message/unflage`;
-        return axios.post(url, { messageID }); 
+    unflagMessage: (messages) => {
+        // messageIds is an array of message IDs
+        const url = `${process.env.REACT_APP_BASE_URL}/moderation/message/unflag`;
+        return axios.post(url, { messages });
     }
 
 }

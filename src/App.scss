@@ -17,8 +17,6 @@ main {
     //     margin: 0;
     // }
 
-    // *these are just placeholders until the rest of the components are implemented - should change selectors when they are all ready*
-
     >.logo-container {
         grid-column: 1 / 4;
         grid-row: 1 / 2;
@@ -30,17 +28,17 @@ main {
         }
     }
 
-    :nth-child(2) {
+    .channel-list-container {
         grid-column: 1 / 4;
         grid-row: 2 / 11;
     }
 
-    :nth-child(3) {
+    .flagged-messages-container {
         grid-column: 4 / 13;
         grid-row: 1 / 6;
     }
 
-    :nth-child(4) {
+    .message-context-container {
         grid-column: 4 / 10;
         grid-row: 6 / 10;
     }
@@ -58,7 +56,7 @@ main {
         }
     }
 
-    :nth-child(6) {
+    .message-actions-container,.message-actions-placeholder {
         grid-column: 10 / 13;
         grid-row: 6 / 11;
     }

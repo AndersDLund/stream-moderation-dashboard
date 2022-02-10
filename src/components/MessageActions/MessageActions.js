@@ -11,24 +11,43 @@ import { Loader } from '../../shared/components/Loader/Loader';
 import { ModerationService } from '../../services/ModerationService';
 
 export const MessageActions = (props) => {
-    const { selectedMessages, selectedUsers, flagged, setFlagged } = props;
+    const { selectedMessages, selectedUsers, flagged, setFlagged, toast, setToast } = props;
     const [tab, setTab] = useState('users');
+
+    const handleToast = (apiResponse) => {
+
+        const toastClone = { ...toast };
+        toastClone.show = true;
+        toastClone.text = apiResponse.data.payload;
+        toastClone.success = apiResponse.status === 200 ? true : false;
+        setToast(toastClone);
+
+        setTimeout(() => {
+            const toastCloneTimeout = { ...toast }
+            toastCloneTimeout.show = false;
+            toastCloneTimeout.text = '';
+            toastCloneTimeout.success = null;
+            setToast(toastCloneTimeout);
+        }, 5000);
+    }
 
     const userActions = [
         {
             title: 'ban', executable: async (props) => {
                 try {
-                    await ModerationService.banUser(props.selectedUsers);
+                    const response = await ModerationService.banUser(props.selectedUsers);
+                    handleToast(response);
                 } catch (error) {
-                    console.error(error);
+                    handleToast(error.response);
+                    console.error(error.response,);
                 }
             }
         },
-        // Step 2 copy ban for each of the following 
         {
             title: 'ban for 24 hours', executable: async (props) => {
                 try {
-                    await ModerationService.banUser24(props.selectedUsers);
+                    const response = await ModerationService.banUser24(props.selectedUsers);
+                    handleToast(response);
                 } catch (error) {
                     console.error(error);
                 }
@@ -38,7 +57,8 @@ export const MessageActions = (props) => {
         {
             title: 'delete', executable: async (props) => {
                 try {
-                    await ModerationService.deleteUser(props.selectedUsers);
+                   const response = await ModerationService.deleteUser(props.selectedUsers);
+                   handleToast(response);
                 } catch (error) {
                     console.error(error);
                 }
@@ -48,22 +68,23 @@ export const MessageActions = (props) => {
         {
             title: 'delete user(s) & messages', executable: async (props) => {
                 try {
-                    await ModerationService.deleteUserAndMessages(props.selectedUsers);
+                    const response = await ModerationService.deleteUserAndMessages(props.selectedUsers);
+                    handleToast(response);
                 } catch (error) {
                     console.error(error);
                 }
             }
         },
     ];
-    // for message action use props.selectedMessages
     const messageActions = [
         {
             title: 'delete', executable: async (props) => {
                 try {
-                    await ModerationService.deleteMessage(props.selectedMessages);
+                    const response = await ModerationService.deleteMessage(props.selectedMessages);
                     const flaggedClone = [...flagged];
                     const removed = flaggedClone.filter(item => !props.selectedMessages.includes(item));
                     setFlagged(removed);
+                    handleToast(response);
                 } catch (error) {
                     console.error(error);
                 }
@@ -72,11 +93,11 @@ export const MessageActions = (props) => {
 
         {
             title: 'unflag', executable: async (props) => {
-                // try {
-                //     await ModerationService.unflagMessage(props.selectedMessages);
-                // } catch (error) {
-                //     console.error(error);
-                // } 
+                try {
+                    await ModerationService.unflagMessage(props.selectedMessages);
+                } catch (error) {
+                    console.error(error);
+                }
             }
         },
     ];
@@ -145,7 +166,7 @@ export const MessageActions = (props) => {
         );
     } else {
         return (
-            <section className="container">
+            <section className="container message-actions-placeholder">
                 <Loader message={'Select a message'} />
             </section>
         );
