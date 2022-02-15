@@ -75,7 +75,9 @@ export const ChannelList = (props) => {
         {channels.map((channel, i) => (
           <li key={i} onClick={() => selectChannel(channel)}>
             <p>{channel.id}</p>
-            <p>{channel.flagged_count}</p>
+            <div className={(!channel?.flagged_count ? ' hide' : '')}>
+              <p>{channel.flagged_count}</p>
+            </div>
           </li>
         ))}
       </ul>

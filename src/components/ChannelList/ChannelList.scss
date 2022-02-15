@@ -18,6 +18,7 @@
             height: 3rem;
             width: 100%;
         }
+
         >.clear-search-button {
             background: $failure;
             border: 2px solid $foreground;
@@ -49,8 +50,26 @@
             margin-top: 1rem;
             padding: .5rem;
             width: 100%;
-
             transition: all 1s;
+
+            >div {
+                align-items: center;
+                background-color: $failure;
+                border-radius: 50%;
+                display: flex;
+                height: 2rem;
+                justify-content: center;
+                width: 2rem;
+                padding: .5rem;
+
+                >p {
+                    color: $background;
+                }
+
+                &.hide {
+                    visibility: hidden;
+                }
+            }
 
             &:hover {
                 border-color: $primary;
@@ -62,21 +81,4 @@
             }
         }
     }
-
-    // >.clear-search-button {
-    //     background: $primary;
-    //     bottom: .5rem;
-    //     border: none;
-    //     border-radius: $border-radius;
-    //     color: $background;
-    //     cursor: pointer;
-    //     // height: 1rem;
-    //     left: 0;
-    //     margin: auto;
-    //     padding: .25rem;
-    //     position: sticky;
-    //     right: 0;
-    //     top: calc( 100vh - .5rem );;
-    //     width: 5rem;
-    // }
 }
