@@ -76,7 +76,7 @@ export const ChannelList = (props) => {
           <li key={i} onClick={() => selectChannel(channel)}>
             <p>{channel.id}</p>
             <div className={(!channel?.flagged_count ? ' hide' : '')}>
-              <p>{channel.flagged_count}</p>
+              <p>{channel.flagged_count < 99 ? channel.flagged_count : 99}</p>
             </div>
           </li>
         ))}
